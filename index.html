@@ -1,24 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Janala</title>
 
-    <!-- Tailwind -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#422AD5",
+                        secondary: "#00BCFF"
+                    }
+                }
+            }
+        }
+    </script>
+
     <!-- DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+
+<body class="font-[Poppins] bg-white">
+
+    <!-- ================= NAVBAR ================= -->
+    <header id="navbar" class="hidden">
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+    <section id="hero">
+
+    </section>
+
+    <!-- ================= VOCABULARY ================= -->
+    <main>
+
+        <section id="learn" class="hidden">
+
+            <div class="max-w-7xl mx-auto px-4 py-20">
+
+                <!-- Heading -->
+                <div class="text-center">
+
+                    <h2 class="text-3xl font-bold">
+                        <span class="text-secondary">Let's</span>
+                        Learn Vocabularies
+                    </h2>
+
+                </div>
+
+                <!-- Lesson Buttons -->
+                <div id="lesson-container"
+                    class="flex flex-wrap justify-center gap-3 mt-10">
+
+                </div>
+
+                <!-- Spinner -->
+                <div id="spinner"
+                    class="hidden text-center py-20">
+
+                    <span class="loading loading-spinner loading-lg"></span>
+
+                </div>
+
+                <!-- Vocabulary Cards -->
+                <div id="word-container"
+                    class="mt-10">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FAQ ================= -->
+
+        <section id="faq" class="hidden">
+
+            <div class="max-w-6xl mx-auto px-4 py-20">
+
+                <h2 class="text-3xl font-bold text-center mb-12">
+
+                    <span class="text-secondary">Frequently</span>
+
+                    Asked Questions
+
+                </h2>
+
+                <div id="faq-container">
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="footer">
+
+    </footer>
+
+    <!-- ================= MODAL ================= -->
+
+    <dialog id="wordModal" class="modal">
+
+        <div class="modal-box">
+
+            <div id="modal-content">
+
+            </div>
+
+        </div>
+
+    </dialog>
+
+    <!-- ================= JS ================= -->
+
+    <script src="./js/utils.js"></script>
+
+    <script src="./js/api.js"></script>
+
+    <script src="./js/login.js"></script>
+
+    <script src="./js/modal.js"></script>
+
+    <script src="./js/speech.js"></script>
 
     <script src="./js/app.js"></script>
+
 </body>
+
 </html>

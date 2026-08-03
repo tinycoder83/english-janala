@@ -1,7 +1,152 @@
-html{
-    scroll-behavior:smooth;
+/* =========================
+   Google Font
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family: sans-serif;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #ffffff;
+    color: #111827;
+}
+
+/* =========================
+   Common Container
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1280px;
+    margin: auto;
+}
+
+/* =========================
+   Navbar
+========================= */
+
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    z-index: 999;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* =========================
+   Sections
+========================= */
+
+section {
+    width: 100%;
+}
+
+/* =========================
+   Hero
+========================= */
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn-primary {
+    background: #422AD5;
+    color: white;
+    transition: .3s;
+}
+
+.btn-primary:hover {
+    background: #341db8;
+}
+
+.lesson-btn.active {
+    background: #422AD5;
+    color: white;
+}
+
+/* =========================
+   Vocabulary Card
+========================= */
+
+.word-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+.word-card:hover {
+    transform: translateY(-5px);
+}
+
+.word-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.word-card p {
+    margin-top: 8px;
+}
+
+/* =========================
+   Default Box
+========================= */
+
+.default-box {
+    background: #F8F8F8;
+    border-radius: 14px;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+/* =========================
+   Modal
+========================= */
+
+.modal-box {
+    border-radius: 16px;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    border-top: 1px solid #E5E7EB;
+}
+
+/* =========================
+   Spinner
+========================= */
+
+#spinner {
+    padding: 50px 0;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width:768px){
+
+    #hero{
+        min-height:auto;
+        padding:50px 0;
+    }
+
 }
