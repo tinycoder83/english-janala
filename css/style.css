@@ -64,7 +64,6 @@ section {
 ========================= */
 
 .btn-primary {
-    background: #422AD5;
     color: white;
     transition: .3s;
 }
@@ -150,11 +149,9 @@ footer {
     }
 
 }
-
 button{
     cursor:pointer;
 }
-
 img{
     max-width:100%;
     display:block;
