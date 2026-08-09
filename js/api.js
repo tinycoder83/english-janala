@@ -99,77 +99,82 @@ function loadWords(levelNo) {
 // Display Words
 // ===========================
 
+// ===========================
+// Display Vocabulary Cards
+// ===========================
+
 function displayWords(words) {
 
     const wordContainer = document.getElementById("word-container");
 
-    wordContainer.innerHTML = "";
-
-    // Hide Spinner
+    // Hide spinner
     document.getElementById("spinner").classList.add("hidden");
 
-    // No words found
-    if (words.length === 0) {
+    // Clear old cards
+    wordContainer.innerHTML = "";
+
+    // No Word Found
+    if (!words || words.length === 0) {
 
         wordContainer.innerHTML = `
-        
-        <div class="bg-gray-100 rounded-xl py-20 text-center">
+            <div class="bg-gray-100 rounded-2xl py-20 text-center">
 
-            <p class="text-gray-500">
-                এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
-            </p>
+                <p class="text-gray-500">
+                    এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
+                </p>
 
-            <h2 class="text-3xl font-bold mt-4">
-                No Word Found
-            </h2>
+                <h2 class="text-3xl font-bold mt-4">
+                    No Word Found
+                </h2>
 
-        </div>
-        
+            </div>
         `;
 
         return;
     }
 
+    // Create cards
     words.forEach(word => {
+
+        const meaning = word.meaning || "অর্থ পাওয়া যায়নি";
+        const pronunciation = word.pronunciation || "উচ্চারণ পাওয়া যায়নি";
 
         const card = document.createElement("div");
 
         card.className =
-            "bg-white rounded-xl shadow p-6";
+            "bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center hover:shadow-md transition";
 
         card.innerHTML = `
 
-            <h2 class="text-2xl font-bold">
-
-                ${word.word}
-
+            <h2 class="text-2xl font-bold text-gray-800">
+                ${word.word || "Unknown Word"}
             </h2>
 
-            <p class="mt-2">
-
+            <p class="font-medium text-gray-600 mt-5">
                 Meaning / Pronunciation
-
             </p>
 
-            <p class="mt-4 text-xl font-semibold">
-
-                "${word.meaning ?? "অর্থ নেই"} / ${word.pronunciation}"
-
+            <p class="text-lg font-semibold mt-2">
+                ${meaning} / ${pronunciation}
             </p>
 
-            <div class="flex justify-between mt-8">
+            <div class="flex justify-between items-center mt-8">
 
+                <!-- Details -->
                 <button
                     onclick="loadWordDetails(${word.id})"
-                    class="btn btn-sm">
+                    class="btn btn-sm btn-outline"
+                    title="View details">
 
                     <i class="fa-solid fa-circle-info"></i>
 
                 </button>
-           
+
+                <!-- Pronunciation -->
                 <button
-                    onclick="pronounceWord('${word.word}')"
-                    class="btn btn-sm">
+                    onclick="pronounceWord('${word.word || ""}')"
+                    class="btn btn-sm btn-outline"
+                    title="Pronounce word">
 
                     <i class="fa-solid fa-volume-high"></i>
 
