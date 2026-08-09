@@ -72,10 +72,6 @@ section {
     background: #341db8;
 }
 
-.lesson-btn.active {
-    background: #422AD5;
-    color: white;
-}
 
 /* =========================
    Vocabulary Card
@@ -159,4 +155,52 @@ img{
 .lesson-btn.active {
     background: #422AD5;
     color: white;
+}
+/* =========================
+   Responsive Design
+========================= */
+
+@media (max-width: 768px) {
+
+    /* Navbar */
+    #navbar .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    
+
+    #navbar .flex.items-center.gap-2 {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Hero */
+    #hero {
+        min-height: auto;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    /* Vocabulary */
+    #learn {
+        padding-top: 30px;
+    }
+
+    /* FAQ */
+    #faq h2 {
+        font-size: 2rem;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+    }
 }
