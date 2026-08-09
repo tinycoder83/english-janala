@@ -1,13 +1,12 @@
-// ===============================
+// ========================================
 // Vocabulary Details Modal
-// ===============================
+// ========================================
 
 function loadWordDetails(wordId) {
 
     const modal = document.getElementById("wordModal");
 
-    modal.showModal();
-
+    // Show loading state
     modal.innerHTML = `
         <div class="modal-box">
 
@@ -22,28 +21,33 @@ function loadWordDetails(wordId) {
         </form>
     `;
 
+    modal.showModal();
+
+
     fetch(`https://openapi.programming-hero.com/api/word/${wordId}`)
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
 
-            const word = data.data;
-
-            displayWordDetails(word);
+            displayWordDetails(data.data);
 
         })
         .catch(error => {
 
-            console.error(error);
+            console.error("Error loading word details:", error);
 
             modal.innerHTML = `
                 <div class="modal-box">
 
-                    <h3 class="text-xl font-bold text-red-500">
+                    <h3 class="text-2xl font-bold text-red-500">
                         Something went wrong!
                     </h3>
 
+                    <p class="mt-3 text-gray-600">
+                        We could not load the word details.
+                    </p>
+
                     <form method="dialog">
-                        <button class="btn mt-5">
+                        <button class="btn btn-primary mt-6">
                             Close
                         </button>
                     </form>
@@ -56,75 +60,123 @@ function loadWordDetails(wordId) {
 }
 
 
-// ===============================
+// ========================================
 // Display Word Details
-// ===============================
+// ========================================
 
 function displayWordDetails(word) {
 
     const modal = document.getElementById("wordModal");
 
-    const synonyms = word.synonyms || [];
+    // Handle missing values
+    const wordName = word?.word || "Unknown Word";
+    const pronunciation = word?.pronunciation || "Not available";
+    const meaning = word?.meaning || "Meaning not available";
+    const sentence = word?.sentence || "Example sentence not available";
+
+    const synonyms = Array.isArray(word?.synonyms)
+        ? word.synonyms
+        : [];
+
 
     modal.innerHTML = `
 
-        <div class="modal-box">
+        <div class="modal-box max-w-2xl">
 
-            <h2 class="text-3xl font-bold">
+            <!-- Word -->
 
-                ${word.word}
+            <h2 class="text-3xl font-bold text-gray-800">
 
-                <span class="text-primary">
-                    (${word.pronunciation || "N/A"})
-                </span>
+                ${wordName}
 
             </h2>
 
-            <div class="mt-6">
 
-                <h3 class="font-bold text-lg">
+            <!-- Pronunciation -->
+
+            <button
+    onclick="pronounceWord('${wordName}')"
+    class="text-lg text-primary font-medium mt-2 hover:underline">
+
+    <i class="fa-solid fa-volume-high mr-2"></i>
+
+    ${pronunciation}
+
+</button>
+
+
+            <!-- Meaning -->
+
+            <div class="mt-7">
+
+                <h3 class="text-xl font-bold">
+
                     Meaning
+
                 </h3>
 
-                <p class="mt-2">
-                    ${word.meaning || "No meaning found"}
+                <p class="text-gray-600 mt-2">
+
+                    ${meaning}
+
                 </p>
 
             </div>
 
+
+            <!-- Example -->
+
             <div class="mt-6">
 
-                <h3 class="font-bold text-lg">
+                <h3 class="text-xl font-bold">
+
                     Example
+
                 </h3>
 
-                <p class="mt-2">
-                    ${word.sentence || "No example found"}
+                <p class="text-gray-600 mt-2 italic">
+
+                    ${sentence}
+
                 </p>
 
             </div>
 
+
+            <!-- Synonyms -->
+
             <div class="mt-6">
 
-                <h3 class="font-bold text-lg">
+                <h3 class="text-xl font-bold">
+
                     Synonyms
+
                 </h3>
 
                 <div class="flex flex-wrap gap-2 mt-3">
 
                     ${
-                        synonyms.length
-                            ? synonyms.map(item => `
-                                <span class="badge badge-outline">
-                                    ${item}
-                                </span>
-                            `).join("")
-                            : `<span>No synonyms found</span>`
+                        synonyms.length > 0
+
+                        ? synonyms.map(synonym => `
+                            <span class="badge badge-outline py-3 px-4">
+                                ${synonym}
+                            </span>
+                        `).join("")
+
+                        : `
+                            <span class="text-gray-500">
+                                No synonyms available
+                            </span>
+                        `
                     }
 
                 </div>
 
             </div>
+
+
+            <!-- Close Button -->
 
             <form method="dialog">
 
@@ -137,6 +189,15 @@ function displayWordDetails(word) {
             </form>
 
         </div>
+
+
+        <!-- Close when clicking outside -->
+
+        <form method="dialog" class="modal-backdrop">
+
+            <button>close</button>
+
+        </form>
 
     `;
 
