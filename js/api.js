@@ -28,21 +28,27 @@ function displayLessons(lessons) {
         const button = document.createElement("button");
 
         button.innerHTML = `
-        
             <i class="fa-solid fa-book-open"></i>
-
             Lesson-${lesson.level_no}
-        
         `;
 
         button.className =
             "lesson-btn btn btn-outline btn-primary";
 
-        button.onclick = function () {
+        button.addEventListener("click", () => {
 
+            // Remove active class from all buttons
+            document.querySelectorAll(".lesson-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            // Add active class to clicked button
+            button.classList.add("active");
+
+            // Load words
             loadWords(lesson.level_no);
 
-        };
+        });
 
         lessonContainer.appendChild(button);
 
@@ -56,14 +62,35 @@ function displayLessons(lessons) {
 
 function loadWords(levelNo) {
 
-    // Show Spinner
-    document.getElementById("spinner").classList.remove("hidden");
+    const spinner = document.getElementById("spinner");
+    const wordContainer = document.getElementById("word-container");
+
+    // Show spinner
+    spinner.classList.remove("hidden");
+
+    // Clear previous words
+    wordContainer.innerHTML = "";
 
     fetch(`https://openapi.programming-hero.com/api/level/${levelNo}`)
         .then(res => res.json())
         .then(data => {
 
             displayWords(data.data);
+
+        })
+        .catch(error => {
+
+            console.error("Error loading words:", error);
+
+            wordContainer.innerHTML = `
+                <div class="bg-red-50 rounded-xl p-10 text-center">
+                    <p class="text-red-500">
+                        Failed to load vocabulary.
+                    </p>
+                </div>
+            `;
+
+            spinner.classList.add("hidden");
 
         });
 
