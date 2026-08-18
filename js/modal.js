@@ -23,11 +23,9 @@ function loadWordDetails(wordId) {
 
     modal.showModal();
 
-
     fetch(`https://openapi.programming-hero.com/api/word/${wordId}`)
         .then(response => response.json())
         .then(data => {
-
             displayWordDetails(data.data);
 
         })

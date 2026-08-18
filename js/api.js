@@ -117,7 +117,7 @@ function displayWords(words) {
     if (!words || words.length === 0) {
 
         wordContainer.innerHTML = `
-            <div class="bg-gray-100 rounded-2xl py-20 text-center">
+            <div class= "col-span-full bg-gray-100 rounded-2xl py-20 text-center">
 
                 <p class="text-gray-500">
                     এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।

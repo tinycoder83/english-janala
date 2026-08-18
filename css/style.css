@@ -55,8 +55,11 @@ section {
 
 #hero {
     min-height: 100vh;
-    display: flex;
     align-items: center;
+}
+
+#hero.hidden {
+    display: none! important;
 }
 
 /* =========================
@@ -191,7 +194,7 @@ img{
 
     /* Vocabulary */
     #learn {
-        padding-top: 30px;
+        padding-top: 120px;
     }
 
     /* FAQ */
@@ -199,8 +202,23 @@ img{
         font-size: 2rem;
     }
 
+    #learn,
+    #faq {
+    scroll-margin-top: 90px;
+}
+
     /* Footer */
     footer {
         text-align: center;
     }
+}
+/* =========================
+   Vocabulary
+========================= */
+
+#learn {
+    padding-top: 110px;
+}
+#faq{
+    padding-top:110px
 }

@@ -69,12 +69,7 @@ function login() {
     document.getElementById("faq").classList.remove("hidden");
 
 
-    // Scroll to Learn section
-
-    document.getElementById("learn").scrollIntoView({
-        behavior: "smooth"
-    });
-
+    
 
     // Success message
 
